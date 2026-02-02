@@ -2097,6 +2097,290 @@ section {
     margin-right: auto;
 }
 
+
+/* ============================================
+   NEW SECTIONS - UPDATED DESIGN
+   ============================================ */
+
+/* Process Steps with Numbers */
+.process-step {
+    position: relative;
+    padding: var(--space-8);
+    text-align: center;
+}
+
+.process-step__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    color: var(--color-navy);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+    position: relative;
+    z-index: 2;
+}
+
+.process-step__icon {
+    display: none; /* Hide the icon when we have numbers */
+}
+
+.process-step__title {
+    color: var(--color-white);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+}
+
+.process-step__description {
+    color: var(--color-gray-400);
+    line-height: var(--leading-relaxed);
+}
+
+/* Case Study Sections */
+.case-study-section {
+    border: 1px solid var(--color-gray-200);
+    border-radius: 12px;
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+    background: var(--color-white);
+}
+
+.case-study-section--reverse {
+    background: var(--color-cream);
+}
+
+.case-study__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+}
+
+.case-study__client {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: var(--space-1);
+}
+
+.case-study__location {
+    color: var(--color-gray-600);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-2);
+}
+
+.case-study__link {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: color 0.3s ease;
+}
+
+.case-study__link:hover {
+    color: var(--color-gold-dark);
+}
+
+.case-study__result {
+    text-align: right;
+}
+
+.case-study__result-value {
+    display: block;
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: var(--leading-none);
+}
+
+.case-study__result-label {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.case-study__description {
+    max-width: 800px;
+}
+
+.case-study__description p {
+    color: var(--color-gray-700);
+    line-height: var(--leading-relaxed);
+}
+
+.case-study__compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-6);
+}
+
+.case-study__details {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .case-study__header {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .case-study__result {
+        text-align: left;
+    }
+    
+    .case-study__compare {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+/* Technology Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+}
+
+.tech-item {
+    text-align: center;
+    padding: var(--space-6);
+    border-radius: 8px;
+    background: var(--color-cream);
+    border: 1px solid var(--color-gray-200);
+}
+
+.tech-item__icon {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+    display: block;
+}
+
+.tech-item__title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: var(--space-3);
+}
+
+.tech-item__description {
+    color: var(--color-gray-700);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+}
+
+@media (max-width: 768px) {
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+/* Team Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-10);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.team-member {
+    text-align: center;
+    padding: var(--space-8);
+    border-radius: 12px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+}
+
+.team-member__name {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-bottom: var(--space-1);
+}
+
+.team-member__title {
+    color: var(--color-gold);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-1);
+}
+
+.team-member__experience {
+    color: var(--color-gray-600);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-4);
+}
+
+.team-member__description {
+    color: var(--color-gray-700);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-sm);
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+/* Featured Service Card */
+.service-card--featured {
+    border: 2px solid var(--color-gold);
+    background: linear-gradient(135deg, var(--color-cream), var(--color-white));
+    transform: scale(1.02);
+    position: relative;
+}
+
+.service-card--featured::before {
+    content: "Popular";
+    position: absolute;
+    top: -1px;
+    right: var(--space-4);
+    background: var(--color-gold);
+    color: var(--color-navy);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 0 0 6px 6px;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+/* Service Card Badge */
+.service-card__badge {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: var(--color-gold);
+    color: var(--color-navy);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: var(--space-1) var(--space-2);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
 .section-header__overline {
     margin-bottom: var(--space-4);
 }
