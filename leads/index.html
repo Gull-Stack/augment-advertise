@@ -314,11 +314,11 @@
 
     <div class="stats-bar">
       <div class="stat-box">
-        <div class="value" id="totalLeads">9</div>
+        <div class="value" id="totalLeads">11</div>
         <div class="label">Total Leads</div>
       </div>
       <div class="stat-box needs-action">
-        <div class="value" id="needsEmail">4</div>
+        <div class="value" id="needsEmail">3</div>
         <div class="label">Need Email</div>
       </div>
       <div class="stat-box sent">
@@ -497,25 +497,24 @@
       </div>
 
       <!-- Lead 8: Poggi Plastic Surgery -->
-      <div class="lead-card" data-lead="poggi" data-has-email="false">
+      <div class="lead-card" data-lead="poggi" data-has-email="true" data-pre-sent="2/4/2026">
         <div class="card-header">
           <div>
             <div class="lead-name">Poggi Plastic Surgery</div>
             <div class="lead-location">📍 Wichita, KS</div>
           </div>
-          <span class="status-badge needs-email">Need Email</span>
+          <span class="status-badge sent">Sent</span>
         </div>
-        <div class="email-display missing">⚠️ No email found — site hacked with spam!</div>
-        <div class="action-item">📞 Action: Cold call (316) 269-3223</div>
+        <div class="email-display">Contacted via form/direct</div>
         <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
+          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
           <div class="btn-row">
             <a href="https://poggi-plastic-surgery-new-kappa.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
             <a href="https://poggiplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
           </div>
         </div>
         <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
           <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
       </div>
@@ -540,6 +539,52 @@
         </div>
         <div class="tracking-info">
           <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
+      <!-- Lead 10: Wigod Plastic Surgery -->
+      <div class="lead-card" data-lead="wigod" data-has-email="true" data-pre-sent="2/4/2026">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Wigod Plastic Surgery</div>
+            <div class="lead-location">📍 Meridian, ID</div>
+          </div>
+          <span class="status-badge sent">Sent</span>
+        </div>
+        <div class="email-display">Contacted via form/direct</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
+          <div class="btn-row">
+            <a href="https://wigod-plastic-surgery.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://www.wigod.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
+      <!-- Lead 11: Jacksonville Plastic Surgery by Duffy -->
+      <div class="lead-card" data-lead="duffy" data-has-email="true" data-pre-sent="2/4/2026">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Jacksonville Plastic Surgery by Duffy</div>
+            <div class="lead-location">📍 Jacksonville, FL</div>
+          </div>
+          <span class="status-badge sent">Sent</span>
+        </div>
+        <div class="email-display">michaelduffymd@gmail.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
+          <div class="btn-row">
+            <a href="https://jacksonville-plastic-surgery-duffy.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://jacksonvilleplasticsurgerybyduffy.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
           <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
       </div>
@@ -630,7 +675,9 @@ Augment & Advertise
       tonypham: 'https://augmentadvertise.com/go/tonypham',
       perimeter: 'https://augmentadvertise.com/go/perimeter',
       poggi: 'https://augmentadvertise.com/go/poggi',
-      bluewater: 'https://augmentadvertise.com/go/bluewater'
+      bluewater: 'https://augmentadvertise.com/go/bluewater',
+      wigod: 'https://augmentadvertise.com/go/wigod',
+      duffy: 'https://augmentadvertise.com/go/duffy'
     };
 
     // SEMrush competitive insights per lead
@@ -643,7 +690,9 @@ Augment & Advertise
       tonypham: "Competitive Bay Area market — this design helps you stand out",
       perimeter: "Atlanta market has strong competition — this design positions you as premium",
       poggi: "Your site's been hacked with casino spam — this clean design restores your credibility",
-      bluewater: "Raleigh is competitive — this design positions you as premium against local rivals"
+      bluewater: "Raleigh is competitive — this design positions you as premium against local rivals",
+      wigod: "Boise/Meridian market has room to grow — modern design helps capture more local searches",
+      duffy: "Jacksonville is competitive — this design helps you stand out in a crowded market"
     };
 
     let currentLeadId = null;

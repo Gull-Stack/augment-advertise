@@ -9,7 +9,9 @@ const redirects = {
   tonypham: 'https://brycedmorgan.github.io/dr-tony-pham/',
   perimeter: 'https://brycedmorgan.github.io/perimeter-plastic-surgery/',
   poggi: 'https://poggi-plastic-surgery-new-kappa.vercel.app',
-  bluewater: 'https://bluewater-preview.vercel.app'
+  bluewater: 'https://bluewater-preview.vercel.app',
+  wigod: 'https://wigod-plastic-surgery.vercel.app',
+  duffy: 'https://jacksonville-plastic-surgery-duffy.vercel.app'
 };
 
 export default async function handler(req) {
