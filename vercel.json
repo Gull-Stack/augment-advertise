@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/go/:lead", "destination": "/api/go/:lead" }
+  ]
+}
