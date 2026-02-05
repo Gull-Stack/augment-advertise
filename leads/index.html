@@ -513,7 +513,7 @@
         </div>
         <div class="email-field">
           <label>Subject</label>
-          <input type="text" id="emailSubject" value="Transform Your Online Presence — Free Preview Inside">
+          <input type="text" id="emailSubject" value="👀 Website makeover preview for your practice">
         </div>
         <div class="email-field">
           <label>Body</label>
@@ -572,15 +572,15 @@ Augment & Advertise
       updateStats();
     }
 
-    // Preview links for each lead
+    // Preview links for each lead (using tracked URLs)
     const previewLinks = {
-      valley: 'https://valley-plastic-surgery-preview.vercel.app',
-      guerra: 'https://guerra-plastic-surgery-preview.vercel.app',
-      jeneby: 'https://jeneby-plastic-surgery-preview.vercel.app',
-      tampa: 'https://tampa-mommy-makeover-preview.vercel.app',
-      law: 'https://law-plastic-surgery-preview.vercel.app',
-      tonypham: 'https://brycedmorgan.github.io/dr-tony-pham/',
-      perimeter: 'https://brycedmorgan.github.io/perimeter-plastic-surgery/'
+      valley: 'https://augment-advertise.vercel.app/go/valley',
+      guerra: 'https://augment-advertise.vercel.app/go/guerra',
+      jeneby: 'https://augment-advertise.vercel.app/go/jeneby',
+      tampa: 'https://augment-advertise.vercel.app/go/tampa',
+      law: 'https://augment-advertise.vercel.app/go/law',
+      tonypham: 'https://augment-advertise.vercel.app/go/tonypham',
+      perimeter: 'https://augment-advertise.vercel.app/go/perimeter'
     };
 
     let currentLeadId = null;
@@ -594,15 +594,14 @@ Augment & Advertise
       const previewLink = previewLinks[leadId] || '[PREVIEW LINK]';
       
       document.getElementById('emailTo').value = email;
-      document.getElementById('emailBody').value = `Hi,
-
-I noticed your practice could benefit from a modern website refresh. I've actually built a preview of what your new site could look like:
+      document.getElementById('emailBody').value = `Here's a sneak peek at what your website makeover could look like! →
 
 ${previewLink}
 
-Would love to show you more. Free audit included.
+SEMrush shows your competitors ranking for keywords you're missing. This design is built to help you show up higher and better reflect the quality of your work.
 
-Best,
+No cost to look. Let me know what you think.
+
 Josh
 Augment & Advertise
 (801) 787-5294`;
