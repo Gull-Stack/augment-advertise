@@ -5,7 +5,7 @@ const redirects = {
   guerra: 'https://guerra-plastic-surgery-preview.vercel.app',
   jeneby: 'https://jeneby-plastic-surgery-preview.vercel.app',
   tampa: 'https://tampa-mommy-makeover-preview.vercel.app',
-  law: 'https://law-plastic-surgery-preview.vercel.app',
+  law: 'https://michael-law-preview.vercel.app',
   tonypham: 'https://brycedmorgan.github.io/dr-tony-pham/',
   perimeter: 'https://brycedmorgan.github.io/perimeter-plastic-surgery/',
   poggi: 'https://poggi-plastic-surgery-new.vercel.app'
