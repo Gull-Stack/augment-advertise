@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Augment Advertise | Plastic Surgery Leads</title>
+  <title>Lead Pipeline | Augment Advertise</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -28,36 +28,39 @@
       margin-bottom: 0.5rem;
     }
     .subtitle { color: #888; font-size: 1.1rem; }
-    .filter-bar {
+
+    /* Stats Bar */
+    .stats-bar {
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 2rem;
       margin-bottom: 2rem;
       flex-wrap: wrap;
     }
-    .filter-btn {
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      background: transparent;
-      color: #888;
-      cursor: pointer;
-      transition: all 0.2s;
+    .stat-box {
+      text-align: center;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border-color: rgba(255,255,255,0.3);
+    .stat-box .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00d4ff;
     }
-    .filter-btn.hot { border-color: #f97316; color: #f97316; }
-    .filter-btn.stale { border-color: #6b7280; color: #6b7280; }
+    .stat-box .label { color: #888; font-size: 0.85rem; }
+    .stat-box.needs-action .value { color: #f97316; }
+    .stat-box.sent .value { color: #22c55e; }
+
+    /* Leads Grid */
     .leads-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
     }
-    
-    /* Base card styles */
+
+    /* Lead Card - Action Focused */
     .lead-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
@@ -65,653 +68,415 @@
       padding: 1.5rem;
       transition: all 0.3s ease;
       position: relative;
-      overflow: hidden;
     }
     .lead-card:hover {
-      transform: translateY(-4px);
-      border-color: #7c3aed;
-      box-shadow: 0 8px 32px rgba(124,58,237,0.2);
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.2);
     }
 
-    /* 🔥 HOT LEAD - Fire animation */
-    .lead-card.hot {
-      border-color: #f97316;
-      box-shadow: 0 0 30px rgba(249,115,22,0.3), 0 0 60px rgba(249,115,22,0.1);
-      animation: fireGlow 1.5s ease-in-out infinite alternate;
-    }
-    .lead-card.hot::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%);
-      animation: firePulse 2s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .lead-card.hot::after {
-      content: '🔥';
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 1.5rem;
-      animation: fireFlicker 0.5s ease-in-out infinite alternate;
-    }
-    @keyframes fireGlow {
-      from { box-shadow: 0 0 20px rgba(249,115,22,0.3), 0 0 40px rgba(249,115,22,0.1); }
-      to { box-shadow: 0 0 40px rgba(249,115,22,0.5), 0 0 80px rgba(249,115,22,0.2); }
-    }
-    @keyframes firePulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-    }
-    @keyframes fireFlicker {
-      from { transform: scale(1) rotate(-5deg); }
-      to { transform: scale(1.1) rotate(5deg); }
-    }
-
-    /* 🕸️ STALE LEAD - Cobwebs + Fade */
-    .lead-card.stale {
-      opacity: 0.5;
-      filter: grayscale(60%);
-      border-color: rgba(255,255,255,0.05);
-    }
-    .lead-card.stale::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 Q50,20 100,0 M0,0 Q20,50 0,100 M100,0 Q80,50 100,100 M0,100 Q50,80 100,100' stroke='rgba(255,255,255,0.1)' fill='none' stroke-width='0.5'/%3E%3Cpath d='M0,50 Q25,40 50,50 Q75,60 100,50' stroke='rgba(255,255,255,0.08)' fill='none' stroke-width='0.3'/%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='80' cy='30' r='0.5' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='60' cy='70' r='0.8' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
-      background-size: 100px 100px;
-      opacity: 0.6;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .lead-card.stale::after {
-      content: '🕸️';
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 1.2rem;
-      opacity: 0.7;
-    }
-    .lead-card.stale:hover {
-      opacity: 0.7;
-      filter: grayscale(40%);
-    }
-    .lead-card.stale .cobweb-corner {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      pointer-events: none;
-    }
-    .lead-card.stale .cobweb-corner.top-left {
-      top: 0;
-      left: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
-    }
-    .lead-card.stale .cobweb-corner.bottom-right {
-      bottom: 0;
-      right: 0;
-      background: linear-gradient(-45deg, rgba(255,255,255,0.08) 0%, transparent 50%);
-    }
-
-    /* WARM LEAD */
-    .lead-card.warm {
-      border-color: #eab308;
-      box-shadow: 0 0 20px rgba(234,179,8,0.15);
-    }
-    .lead-card.warm::after {
-      content: '⚡';
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 1.2rem;
-    }
-
-    .lead-header {
+    /* Card Header */
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .lead-number {
-      background: linear-gradient(135deg, #7c3aed, #00d4ff);
-      color: #fff;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-    .lead-location {
-      background: rgba(255,255,255,0.1);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: #aaa;
     }
     .lead-name {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 0.25rem;
     }
-    .lead-doctor {
-      color: #00d4ff;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .lead-highlights {
-      list-style: none;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .lead-highlights li {
-      padding: 0.3rem 0;
+    .lead-location {
+      color: #888;
       font-size: 0.9rem;
-      color: #ccc;
     }
-    .lead-highlights li::before {
-      content: "→ ";
-      color: #7c3aed;
+
+    /* Status Badges */
+    .status-badge {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
     }
-    .lead-tags {
+    .status-badge.has-email {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .status-badge.needs-email {
+      background: rgba(249, 115, 22, 0.2);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .status-badge.sent {
+      background: rgba(124, 58, 237, 0.2);
+      color: #a78bfa;
+      border: 1px solid rgba(124, 58, 237, 0.3);
+    }
+    .status-badge.clicked {
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    /* Email Display */
+    .email-display {
+      background: rgba(0,0,0,0.3);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #00d4ff;
+      word-break: break-all;
+    }
+    .email-display.missing {
+      color: #f97316;
+      font-family: inherit;
+      font-style: italic;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .tag {
-      background: rgba(124,58,237,0.2);
-      color: #a78bfa;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-    }
-    .tag.opportunity {
-      background: rgba(0,212,255,0.2);
-      color: #00d4ff;
-    }
-    .lead-actions {
-      display: flex;
-      gap: 0.5rem;
-      position: relative;
-      z-index: 2;
     }
     .btn {
-      flex: 1;
-      padding: 0.6rem 1rem;
-      border: none;
+      padding: 0.75rem 1rem;
       border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
       text-decoration: none;
       text-align: center;
+      cursor: pointer;
       transition: all 0.2s;
+      border: none;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #7c3aed, #5b21b6);
+      background: linear-gradient(135deg, #7c3aed, #00d4ff);
       color: #fff;
     }
-    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    }
+    .btn-primary:disabled, .btn-primary.disabled {
+      background: #333;
+      color: #666;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
     .btn-secondary {
       background: rgba(255,255,255,0.1);
       color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.15); }
-
-    /* Status toggle buttons */
-    .status-toggles {
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+    }
+    .btn-row {
       display: flex;
-      gap: 0.25rem;
-      margin-top: 0.75rem;
-      position: relative;
-      z-index: 2;
+      gap: 0.5rem;
     }
-    .status-btn {
+    .btn-row .btn {
       flex: 1;
-      padding: 0.4rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 6px;
-      background: transparent;
+    }
+
+    /* Tracking Info */
+    .tracking-info {
+      font-size: 0.8rem;
       color: #666;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .status-btn:hover {
-      background: rgba(255,255,255,0.05);
-      color: #999;
+    .tracking-info .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.25rem;
     }
-    .status-btn.fire { border-color: rgba(249,115,22,0.3); }
-    .status-btn.fire:hover, .status-btn.fire.active { background: rgba(249,115,22,0.2); color: #f97316; }
-    .status-btn.warm-btn { border-color: rgba(234,179,8,0.3); }
-    .status-btn.warm-btn:hover, .status-btn.warm-btn.active { background: rgba(234,179,8,0.2); color: #eab308; }
-    .status-btn.stale-btn { border-color: rgba(107,114,128,0.3); }
-    .status-btn.stale-btn:hover, .status-btn.stale-btn.active { background: rgba(107,114,128,0.2); color: #6b7280; }
+    .tracking-info .label { color: #888; }
+    .tracking-info .value { color: #fff; }
+    .tracking-info .value.positive { color: #22c55e; }
+    .tracking-info .value.negative { color: #666; }
 
-    /* Last contact date */
-    .last-contact {
-      font-size: 0.7rem;
-      color: #666;
-      margin-top: 0.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 2;
+    /* Action Items */
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: #f97316;
     }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-top: 3rem;
-      padding: 2rem;
-      background: rgba(255,255,255,0.03);
-      border-radius: 16px;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-value {
-      font-size: 2rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #00d4ff, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-value.hot-stat { background: linear-gradient(135deg, #f97316, #ef4444); -webkit-background-clip: text; }
-    .stat-value.stale-stat { background: linear-gradient(135deg, #6b7280, #4b5563); -webkit-background-clip: text; }
-    .stat-label { color: #888; font-size: 0.85rem; }
-
-    @media (max-width: 768px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
+    .action-item.complete {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Augment Advertise</h1>
-      <p class="subtitle">Plastic Surgery Lead Pipeline | AI-Powered Digital Transformation</p>
+      <h1>Lead Pipeline</h1>
+      <p class="subtitle">Plastic Surgery Outreach — Action Dashboard</p>
     </header>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterLeads('all')">All Leads</button>
-      <button class="filter-btn hot" onclick="filterLeads('hot')">🔥 Hot</button>
-      <button class="filter-btn" onclick="filterLeads('warm')">⚡ Warm</button>
-      <button class="filter-btn stale" onclick="filterLeads('stale')">🕸️ Stale</button>
+    <div class="stats-bar">
+      <div class="stat-box">
+        <div class="value" id="totalLeads">5</div>
+        <div class="label">Total Leads</div>
+      </div>
+      <div class="stat-box needs-action">
+        <div class="value" id="needsEmail">2</div>
+        <div class="label">Need Email</div>
+      </div>
+      <div class="stat-box sent">
+        <div class="value" id="emailsSent">0</div>
+        <div class="label">Emails Sent</div>
+      </div>
+      <div class="stat-box">
+        <div class="value" id="clicked">0</div>
+        <div class="label">Clicked</div>
+      </div>
     </div>
 
     <div class="leads-grid" id="leadsGrid">
+
       <!-- Lead 1: Valley Plastic Surgery -->
-      <div class="lead-card" data-lead="valley" data-status="new">
-        <div class="cobweb-corner top-left"></div>
-        <div class="cobweb-corner bottom-right"></div>
-        <div class="lead-header">
-          <span class="lead-number">1</span>
-          <span class="lead-location">Baltimore, MD</span>
+      <div class="lead-card" data-lead="valley" data-has-email="false">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Valley Plastic Surgery & Medspa</div>
+            <div class="lead-location">📍 Baltimore, MD</div>
+          </div>
+          <span class="status-badge needs-email">Need Email</span>
         </div>
-        <h3 class="lead-name">The Valley Plastic Surgery & Medspa</h3>
-        <p class="lead-doctor">Dr. Alyson Wells, MD, FACS</p>
-        <ul class="lead-highlights">
-          <li>Double board-certified (Plastic + ENT)</li>
-          <li>Johns Hopkins trained</li>
-          <li>Women-focused practice</li>
-          <li>Baltimore Magazine Top Doctor</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag">Breast</span>
-          <span class="tag">Body</span>
-          <span class="tag">Face</span>
-          <span class="tag">MedSpa</span>
-          <span class="tag opportunity">AI Chatbot</span>
+        <div class="email-display missing">⚠️ No email found — contact form only</div>
+        <div class="action-item">📞 Action: Cold call (410) 628-8200</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://valley-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://www.thevalleyplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
         </div>
-        <div class="lead-actions">
-          <a href="lead-1-valley.html" class="btn btn-primary">View Profile</a>
-          <a href="https://www.thevalleyplasticsurgery.com/" target="_blank" class="btn btn-secondary">Website →</a>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
-        <div class="status-toggles">
-          <button class="status-btn fire" onclick="setStatus('valley', 'hot')">🔥 Hot</button>
-          <button class="status-btn warm-btn" onclick="setStatus('valley', 'warm')">⚡ Warm</button>
-          <button class="status-btn stale-btn" onclick="setStatus('valley', 'stale')">🕸️ Stale</button>
-        </div>
-        <div class="last-contact">Last contact: Never</div>
       </div>
 
       <!-- Lead 2: Guerra Plastic Surgery -->
-      <div class="lead-card" data-lead="guerra" data-status="new">
-        <div class="cobweb-corner top-left"></div>
-        <div class="cobweb-corner bottom-right"></div>
-        <div class="lead-header">
-          <span class="lead-number">2</span>
-          <span class="lead-location">Phoenix/Scottsdale, AZ</span>
+      <div class="lead-card" data-lead="guerra" data-has-email="true">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Guerra Plastic Surgery Center</div>
+            <div class="lead-location">📍 Phoenix, AZ</div>
+          </div>
+          <span class="status-badge has-email">Has Email</span>
         </div>
-        <h3 class="lead-name">Guerra Plastic Surgery Center</h3>
-        <p class="lead-doctor">Dr. Aldo Guerra, MD, FACS + Dr. Scott Ogley</p>
-        <ul class="lead-highlights">
-          <li>🚨 Raw PHP showing on 404 pages</li>
-          <li>4 competing domains (SEO dilution)</li>
-          <li>Legacy PHP site — needs rebuild</li>
-          <li>Serves entire Phoenix metro</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag">Breast</span>
-          <span class="tag">Body</span>
-          <span class="tag">Face</span>
-          <span class="tag opportunity">Site Rebuild</span>
-          <span class="tag opportunity">SEO Fix</span>
+        <div class="email-display">experts@azbreasts.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="sendEmail('guerra', 'experts@azbreasts.com')">📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://guerra-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://www.azbreasts.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
         </div>
-        <div class="lead-actions">
-          <a href="lead-2-guerra.html" class="btn btn-primary">View Profile</a>
-          <a href="https://www.azbreasts.com/" target="_blank" class="btn btn-secondary">Website →</a>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
-        <div class="status-toggles">
-          <button class="status-btn fire" onclick="setStatus('guerra', 'hot')">🔥 Hot</button>
-          <button class="status-btn warm-btn" onclick="setStatus('guerra', 'warm')">⚡ Warm</button>
-          <button class="status-btn stale-btn" onclick="setStatus('guerra', 'stale')">🕸️ Stale</button>
-        </div>
-        <div class="last-contact">Last contact: Never</div>
       </div>
 
       <!-- Lead 3: Dr. Jeneby -->
-      <div class="lead-card" data-lead="jeneby" data-status="new">
-        <div class="cobweb-corner top-left"></div>
-        <div class="cobweb-corner bottom-right"></div>
-        <div class="lead-header">
-          <span class="lead-number">3</span>
-          <span class="lead-location">San Antonio, TX</span>
+      <div class="lead-card" data-lead="jeneby" data-has-email="true">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Dr. Jeneby Plastic Surgery</div>
+            <div class="lead-location">📍 San Antonio, TX</div>
+          </div>
+          <span class="status-badge has-email">Has Email</span>
         </div>
-        <h3 class="lead-name">Dr. Jeneby Plastic Surgery</h3>
-        <p class="lead-doctor">Dr. Thomas Jeneby "Dr. Boom Boom Pow"</p>
-        <ul class="lead-highlights">
-          <li>10,000+ surgeries, 4 surgeons on staff</li>
-          <li>300K TikTok, 20M+ social reach</li>
-          <li>7 ORs across 3 facilities</li>
-          <li>Featured on ABC Nightline (Hulu)</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag">High Volume</span>
-          <span class="tag">Social Media</span>
-          <span class="tag">Multi-Surgeon</span>
-          <span class="tag opportunity">AI Automation</span>
+        <div class="email-display">info@drjenebyplasticsurgery.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="sendEmail('jeneby', 'info@drjenebyplasticsurgery.com')">📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://jeneby-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://drjenebyplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
         </div>
-        <div class="lead-actions">
-          <a href="lead-3-jeneby.html" class="btn btn-primary">View Profile</a>
-          <a href="https://drjenebyplasticsurgery.com/" target="_blank" class="btn btn-secondary">Website →</a>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
-        <div class="status-toggles">
-          <button class="status-btn fire" onclick="setStatus('jeneby', 'hot')">🔥 Hot</button>
-          <button class="status-btn warm-btn" onclick="setStatus('jeneby', 'warm')">⚡ Warm</button>
-          <button class="status-btn stale-btn" onclick="setStatus('jeneby', 'stale')">🕸️ Stale</button>
-        </div>
-        <div class="last-contact">Last contact: Never</div>
       </div>
 
       <!-- Lead 4: Tampa Mommy Makeover -->
-      <div class="lead-card" data-lead="tampa" data-status="new">
-        <div class="cobweb-corner top-left"></div>
-        <div class="cobweb-corner bottom-right"></div>
-        <div class="lead-header">
-          <span class="lead-number">4</span>
-          <span class="lead-location">Tampa, FL</span>
+      <div class="lead-card" data-lead="tampa" data-has-email="false">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Tampa Mommy Makeover</div>
+            <div class="lead-location">📍 Tampa, FL</div>
+          </div>
+          <span class="status-badge needs-email">Need Email</span>
         </div>
-        <h3 class="lead-name">Tampa Mommy Makeover / SynergyMD</h3>
-        <p class="lead-doctor">Dr. Joseph Brown, MD, FACS</p>
-        <ul class="lead-highlights">
-          <li>Smart SEO: procedure-specific domain</li>
-          <li>Transparent pricing ($16.8K-$19.8K)</li>
-          <li>4th-degree black belt surgeon</li>
-          <li>Has agency (LigamentMedia)</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag">Mommy Makeover</span>
-          <span class="tag">BBL</span>
-          <span class="tag">MedSpa</span>
-          <span class="tag opportunity">Content Upgrade</span>
+        <div class="email-display missing">⚠️ No email found — contact form only</div>
+        <div class="action-item">📞 Action: Cold call (813) 258-2425</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://tampa-mommy-makeover-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://tampamommymakeover.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
         </div>
-        <div class="lead-actions">
-          <a href="lead-4-tampa.html" class="btn btn-primary">View Profile</a>
-          <a href="https://tampamommymakeover.com/" target="_blank" class="btn btn-secondary">Website →</a>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
-        <div class="status-toggles">
-          <button class="status-btn fire" onclick="setStatus('tampa', 'hot')">🔥 Hot</button>
-          <button class="status-btn warm-btn" onclick="setStatus('tampa', 'warm')">⚡ Warm</button>
-          <button class="status-btn stale-btn" onclick="setStatus('tampa', 'stale')">🕸️ Stale</button>
-        </div>
-        <div class="last-contact">Last contact: Never</div>
       </div>
 
       <!-- Lead 5: Michael Law MD -->
-      <div class="lead-card" data-lead="law" data-status="new">
-        <div class="cobweb-corner top-left"></div>
-        <div class="cobweb-corner bottom-right"></div>
-        <div class="lead-header">
-          <span class="lead-number">5</span>
-          <span class="lead-location">Raleigh, NC</span>
+      <div class="lead-card" data-lead="law" data-has-email="true">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Michael Law MD Aesthetic Plastic Surgery</div>
+            <div class="lead-location">📍 Raleigh, NC</div>
+          </div>
+          <span class="status-badge has-email">Has Email</span>
         </div>
-        <h3 class="lead-name">Michael Law MD Aesthetic Plastic Surgery</h3>
-        <p class="lead-doctor">Dr. Michael Law, MD</p>
-        <ul class="lead-highlights">
-          <li>10 YEARS training (2x normal)</li>
-          <li>Former Beverly Hills practice</li>
-          <li>WRAL Best since 2017</li>
-          <li>Only dual-accredited OR in NC</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag">Premium</span>
-          <span class="tag">Gynecomastia Niche</span>
-          <span class="tag">MedSpa</span>
-          <span class="tag opportunity">Site Modernize</span>
+        <div class="email-display">info@michaellawmd.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary" onclick="sendEmail('law', 'info@michaellawmd.com')">📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://law-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://www.michaellawmd.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
         </div>
-        <div class="lead-actions">
-          <a href="lead-5-law.html" class="btn btn-primary">View Profile</a>
-          <a href="https://www.michaellawmd.com/" target="_blank" class="btn btn-secondary">Website →</a>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
         </div>
-        <div class="status-toggles">
-          <button class="status-btn fire" onclick="setStatus('law', 'hot')">🔥 Hot</button>
-          <button class="status-btn warm-btn" onclick="setStatus('law', 'warm')">⚡ Warm</button>
-          <button class="status-btn stale-btn" onclick="setStatus('law', 'stale')">🕸️ Stale</button>
-        </div>
-        <div class="last-contact">Last contact: Never</div>
       </div>
 
-      <!-- Lead 6: Placeholder -->
-      <div class="lead-card" style="opacity: 0.3; border-style: dashed;" data-lead="placeholder">
-        <div class="lead-header">
-          <span class="lead-number">+</span>
-          <span class="lead-location">Add Lead</span>
-        </div>
-        <h3 class="lead-name">More Leads Coming</h3>
-        <p class="lead-doctor">Pipeline building...</p>
-        <ul class="lead-highlights">
-          <li>Olympic Paint USA (Google Ads target)</li>
-          <li>More plastic surgeons</li>
-          <li>Dermatology practices</li>
-        </ul>
-        <div class="lead-tags">
-          <span class="tag opportunity">Prospecting</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value" id="totalLeads">5</div>
-        <div class="stat-label">Total Leads</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value hot-stat" id="hotLeads">0</div>
-        <div class="stat-label">🔥 Hot</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value" id="warmLeads">0</div>
-        <div class="stat-label">⚡ Warm</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value stale-stat" id="staleLeads">0</div>
-        <div class="stat-label">🕸️ Stale</div>
-      </div>
     </div>
   </div>
 
   <script>
-    // Load saved states from localStorage
-    function loadStates() {
-      const cards = document.querySelectorAll('.lead-card[data-lead]');
-      cards.forEach(card => {
-        const lead = card.dataset.lead;
-        if (lead === 'placeholder') return;
-        
-        const saved = localStorage.getItem(`lead-${lead}`);
-        if (saved) {
-          const data = JSON.parse(saved);
-          applyStatus(card, data.status);
-          updateLastContact(card, data.lastContact);
+    // Load state from localStorage
+    const STORAGE_KEY = 'augment_leads_state';
+    let leadState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+    // Initialize UI from saved state
+    function initUI() {
+      Object.keys(leadState).forEach(leadId => {
+        const state = leadState[leadId];
+        const card = document.querySelector(`[data-lead="${leadId}"]`);
+        if (!card) return;
+
+        if (state.sent) {
+          markAsSent(card, state.sentDate);
+        }
+        if (state.clicked) {
+          markAsClicked(card);
         }
       });
       updateStats();
     }
 
-    function setStatus(lead, status) {
-      const card = document.querySelector(`[data-lead="${lead}"]`);
-      if (!card) return;
+    // Send email action
+    function sendEmail(leadId, email) {
+      const card = document.querySelector(`[data-lead="${leadId}"]`);
+      const btn = card.querySelector('.btn-primary');
       
-      // Save to localStorage
-      const data = {
-        status: status,
-        lastContact: new Date().toISOString()
-      };
-      localStorage.setItem(`lead-${lead}`, JSON.stringify(data));
+      // Open email client
+      const subject = encodeURIComponent('Transform Your Online Presence — Free Preview Inside');
+      const body = encodeURIComponent(`Hi,
+
+I noticed your practice could benefit from a modern website refresh. I've actually built a preview of what your new site could look like:
+
+[PREVIEW LINK]
+
+Would love to show you more. Free audit included.
+
+Best,
+Josh
+Augment & Advertise
+(801) 787-5294`);
       
-      // Apply visual status
-      applyStatus(card, status);
-      updateLastContact(card, data.lastContact);
+      window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
+
+      // Update state
+      const now = new Date().toLocaleDateString();
+      leadState[leadId] = leadState[leadId] || {};
+      leadState[leadId].sent = true;
+      leadState[leadId].sentDate = now;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(leadState));
+
+      markAsSent(card, now);
       updateStats();
     }
 
-    function applyStatus(card, status) {
-      // Remove all status classes
-      card.classList.remove('hot', 'warm', 'stale');
-      card.dataset.status = status;
-      
-      // Add new status class
-      if (status && status !== 'new') {
-        card.classList.add(status);
-      }
-      
-      // Update active button
-      const buttons = card.querySelectorAll('.status-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      const activeBtn = card.querySelector(`.status-btn.${status === 'hot' ? 'fire' : status + '-btn'}`);
-      if (activeBtn) activeBtn.classList.add('active');
+    function markAsSent(card, date) {
+      const btn = card.querySelector('.btn-primary');
+      btn.textContent = '✅ Email Sent';
+      btn.classList.add('disabled');
+      btn.disabled = true;
+      btn.onclick = null;
+
+      const badge = card.querySelector('.status-badge');
+      badge.className = 'status-badge sent';
+      badge.textContent = 'Sent';
+
+      const sentRow = card.querySelector('.tracking-info .row:first-child .value');
+      sentRow.textContent = date;
+      sentRow.classList.remove('negative');
     }
 
-    function updateLastContact(card, isoDate) {
-      const el = card.querySelector('.last-contact');
-      if (!el || !isoDate) return;
-      
-      const date = new Date(isoDate);
-      const now = new Date();
-      const diff = now - date;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      
-      let text;
-      if (days === 0) text = 'Last contact: Today';
-      else if (days === 1) text = 'Last contact: Yesterday';
-      else if (days < 7) text = `Last contact: ${days} days ago`;
-      else if (days < 30) text = `Last contact: ${Math.floor(days/7)} weeks ago`;
-      else text = `Last contact: ${Math.floor(days/30)} months ago`;
-      
-      el.textContent = text;
+    function markAsClicked(card) {
+      const badge = card.querySelector('.status-badge');
+      badge.className = 'status-badge clicked';
+      badge.textContent = 'Clicked!';
+
+      const clickedRow = card.querySelector('.tracking-info .row:last-child .value');
+      clickedRow.textContent = 'Yes';
+      clickedRow.classList.remove('negative');
+      clickedRow.classList.add('positive');
     }
 
     function updateStats() {
-      const cards = document.querySelectorAll('.lead-card[data-lead]:not([data-lead="placeholder"])');
-      let hot = 0, warm = 0, stale = 0;
-      
+      const cards = document.querySelectorAll('.lead-card');
+      let total = cards.length;
+      let needsEmail = 0;
+      let sent = 0;
+      let clicked = 0;
+
       cards.forEach(card => {
-        const status = card.dataset.status;
-        if (status === 'hot') hot++;
-        else if (status === 'warm') warm++;
-        else if (status === 'stale') stale++;
+        const leadId = card.dataset.lead;
+        const hasEmail = card.dataset.hasEmail === 'true';
+        
+        if (!hasEmail) needsEmail++;
+        if (leadState[leadId]?.sent) sent++;
+        if (leadState[leadId]?.clicked) clicked++;
       });
-      
-      document.getElementById('hotLeads').textContent = hot;
-      document.getElementById('warmLeads').textContent = warm;
-      document.getElementById('staleLeads').textContent = stale;
+
+      document.getElementById('totalLeads').textContent = total;
+      document.getElementById('needsEmail').textContent = needsEmail;
+      document.getElementById('emailsSent').textContent = sent;
+      document.getElementById('clicked').textContent = clicked;
     }
 
-    function filterLeads(filter) {
-      const cards = document.querySelectorAll('.lead-card[data-lead]');
-      const buttons = document.querySelectorAll('.filter-btn');
-      
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      
-      cards.forEach(card => {
-        if (card.dataset.lead === 'placeholder') {
-          card.style.display = filter === 'all' ? 'block' : 'none';
-          return;
-        }
-        
-        const status = card.dataset.status;
-        if (filter === 'all') {
-          card.style.display = 'block';
-        } else if (filter === status) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // Auto-stale leads after 7 days of no contact
-    function checkStale() {
-      const cards = document.querySelectorAll('.lead-card[data-lead]:not([data-lead="placeholder"])');
-      cards.forEach(card => {
-        const lead = card.dataset.lead;
-        const saved = localStorage.getItem(`lead-${lead}`);
-        
-        if (!saved) {
-          // Never contacted - mark as stale after showing for a bit
-          return;
-        }
-        
-        const data = JSON.parse(saved);
-        if (data.status === 'stale') return; // Already stale
-        
-        const lastContact = new Date(data.lastContact);
-        const now = new Date();
-        const days = (now - lastContact) / (1000 * 60 * 60 * 24);
-        
-        // Auto-stale after 14 days without update
-        if (days > 14 && data.status !== 'hot') {
-          data.status = 'stale';
-          localStorage.setItem(`lead-${lead}`, JSON.stringify(data));
-          applyStatus(card, 'stale');
-        }
-      });
-      updateStats();
-    }
-
-    // Initialize
-    loadStates();
-    checkStale();
+    // Init on load
+    initUI();
   </script>
 </body>
 </html>
