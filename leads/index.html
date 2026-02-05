@@ -314,11 +314,11 @@
 
     <div class="stats-bar">
       <div class="stat-box">
-        <div class="value" id="totalLeads">5</div>
+        <div class="value" id="totalLeads">9</div>
         <div class="label">Total Leads</div>
       </div>
       <div class="stat-box needs-action">
-        <div class="value" id="needsEmail">2</div>
+        <div class="value" id="needsEmail">4</div>
         <div class="label">Need Email</div>
       </div>
       <div class="stat-box sent">
@@ -496,6 +496,54 @@
         </div>
       </div>
 
+      <!-- Lead 8: Poggi Plastic Surgery -->
+      <div class="lead-card" data-lead="poggi" data-has-email="false">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Poggi Plastic Surgery</div>
+            <div class="lead-location">📍 Wichita, KS</div>
+          </div>
+          <span class="status-badge needs-email">Need Email</span>
+        </div>
+        <div class="email-display missing">⚠️ No email found — site hacked with spam!</div>
+        <div class="action-item">📞 Action: Cold call (316) 269-3223</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://poggi-plastic-surgery-new-kappa.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://poggiplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
+      <!-- Lead 9: Bluewater Plastic Surgery Partners -->
+      <div class="lead-card" data-lead="bluewater" data-has-email="false">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Bluewater Plastic Surgery Partners</div>
+            <div class="lead-location">📍 Raleigh, NC</div>
+          </div>
+          <span class="status-badge needs-email">Need Email</span>
+        </div>
+        <div class="email-display missing">⚠️ No email found — contact form only</div>
+        <div class="action-item">📞 Action: Cold call (919) 870-1052</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
+          <div class="btn-row">
+            <a href="https://bluewater-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://www.bluewaterplasticsurgerypartners.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -581,7 +629,8 @@ Augment & Advertise
       law: 'https://augmentadvertise.com/go/law',
       tonypham: 'https://augmentadvertise.com/go/tonypham',
       perimeter: 'https://augmentadvertise.com/go/perimeter',
-      poggi: 'https://augmentadvertise.com/go/poggi'
+      poggi: 'https://augmentadvertise.com/go/poggi',
+      bluewater: 'https://augmentadvertise.com/go/bluewater'
     };
 
     // SEMrush competitive insights per lead
@@ -593,7 +642,8 @@ Augment & Advertise
       law: "Not ranking for 'mommy makeover Raleigh' — wakeplasticsurgery.com holds #1",
       tonypham: "Competitive Bay Area market — this design helps you stand out",
       perimeter: "Atlanta market has strong competition — this design positions you as premium",
-      poggi: "Wichita market opportunity — modern design helps you dominate local search"
+      poggi: "Your site's been hacked with casino spam — this clean design restores your credibility",
+      bluewater: "Raleigh is competitive — this design positions you as premium against local rivals"
     };
 
     let currentLeadId = null;
