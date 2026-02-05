@@ -574,13 +574,26 @@ Augment & Advertise
 
     // Preview links for each lead (using tracked URLs)
     const previewLinks = {
-      valley: 'https://augment-advertise.vercel.app/go/valley',
-      guerra: 'https://augment-advertise.vercel.app/go/guerra',
-      jeneby: 'https://augment-advertise.vercel.app/go/jeneby',
-      tampa: 'https://augment-advertise.vercel.app/go/tampa',
-      law: 'https://augment-advertise.vercel.app/go/law',
-      tonypham: 'https://augment-advertise.vercel.app/go/tonypham',
-      perimeter: 'https://augment-advertise.vercel.app/go/perimeter'
+      valley: 'https://augmentadvertise.com/go/valley',
+      guerra: 'https://augmentadvertise.com/go/guerra',
+      jeneby: 'https://augmentadvertise.com/go/jeneby',
+      tampa: 'https://augmentadvertise.com/go/tampa',
+      law: 'https://augmentadvertise.com/go/law',
+      tonypham: 'https://augmentadvertise.com/go/tonypham',
+      perimeter: 'https://augmentadvertise.com/go/perimeter',
+      poggi: 'https://augmentadvertise.com/go/poggi'
+    };
+
+    // SEMrush competitive insights per lead
+    const seoInsights = {
+      valley: "You're #2 for 'mommy makeover Baltimore' — baltimoreplasticsurgery.com holds #1",
+      guerra: "Not ranking for 'mommy makeover Phoenix' — drcraft.com holds #1",
+      jeneby: "Strong SEO with 22K organic traffic — this design makes it even better",
+      tampa: "Not in top 5 for 'mommy makeover Tampa' — newtampaplasticsurgery.com owns #1",
+      law: "Not ranking for 'mommy makeover Raleigh' — wakeplasticsurgery.com holds #1",
+      tonypham: "Competitive Bay Area market — this design helps you stand out",
+      perimeter: "Atlanta market has strong competition — this design positions you as premium",
+      poggi: "Wichita market opportunity — modern design helps you dominate local search"
     };
 
     let currentLeadId = null;
@@ -594,11 +607,13 @@ Augment & Advertise
       const previewLink = previewLinks[leadId] || '[PREVIEW LINK]';
       
       document.getElementById('emailTo').value = email;
+      const seoInsight = seoInsights[leadId] || "Built to help you show up higher in search";
+      
       document.getElementById('emailBody').value = `Here's a sneak peek at what your website makeover could look like! →
 
 ${previewLink}
 
-Built to help you show up higher in search and better reflect the quality of your work.
+${seoInsight}. This design better reflects the quality of your work.
 
 No cost to look. Let me know what you think.
 
