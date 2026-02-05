@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Law MD | Augment Advertise Lead</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    .back-link {
+      color: #888;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .back-link:hover { color: #fff; }
+    .lead-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed, #00d4ff);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .premium-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-left: 0.5rem;
+    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .doctor-name { color: #00d4ff; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .location { color: #888; margin-bottom: 2rem; }
+    .section {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .section h2 {
+      font-size: 1.1rem;
+      color: #a78bfa;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .info-item label { display: block; color: #888; font-size: 0.8rem; margin-bottom: 0.25rem; }
+    .info-item span { font-size: 1rem; }
+    ul { list-style: none; }
+    ul li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    ul li:last-child { border-bottom: none; }
+    ul li::before { content: "→ "; color: #7c3aed; }
+    .highlight {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+    }
+    .highlight h2 { color: #f59e0b; }
+    .training-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .training-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #7c3aed, #00d4ff);
+    }
+    .training-item {
+      position: relative;
+      padding: 0.75rem 0;
+    }
+    .training-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 1rem;
+      width: 10px;
+      height: 10px;
+      background: #7c3aed;
+      border-radius: 50%;
+    }
+    .training-item h4 { color: #00d4ff; margin-bottom: 0.25rem; }
+    .training-item p { color: #888; font-size: 0.9rem; }
+    .opportunity {
+      background: rgba(0,212,255,0.1);
+      border-color: rgba(0,212,255,0.3);
+    }
+    .opportunity h2 { color: #00d4ff; }
+    .red-flag {
+      background: rgba(239,68,68,0.1);
+      border-color: rgba(239,68,68,0.3);
+    }
+    .red-flag h2 { color: #f87171; }
+    .cta-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+    .btn {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn-primary { background: linear-gradient(135deg, #7c3aed, #5b21b6); color: #fff; }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Pipeline</a>
+    
+    <span class="lead-badge">Lead #5 • Raleigh, NC</span>
+    <span class="premium-badge">Premium Practice</span>
+    <h1>Michael Law MD Aesthetic Plastic Surgery</h1>
+    <p class="doctor-name">Dr. Michael Law, MD</p>
+    <p class="location">📍 10941 Raven Ridge Road, Suite 101, Raleigh, NC</p>
+
+    <div class="section">
+      <h2>Contact Information</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Phone</label>
+          <span>(919) 256-0900</span>
+        </div>
+        <div class="info-item">
+          <label>Website</label>
+          <span>michaellawmd.com</span>
+        </div>
+        <div class="info-item">
+          <label>Med Spa</label>
+          <span>bluewaterspa.com</span>
+        </div>
+        <div class="info-item">
+          <label>Board Certified</label>
+          <span>Since 2002</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section highlight">
+      <h2>⭐ The 10-Year Training Difference</h2>
+      <p style="margin-bottom: 1rem; color: #ccc;">Dr. Law completed <strong>10 years of formal surgical training</strong> after medical school — twice what some plastic surgeons complete.</p>
+      <div class="training-timeline">
+        <div class="training-item">
+          <h4>UNC Chapel Hill</h4>
+          <p>BS with honors, Phi Beta Kappa</p>
+        </div>
+        <div class="training-item">
+          <h4>Emory University</h4>
+          <p>MD, magna cum laude, 2nd in class of 100+</p>
+        </div>
+        <div class="training-item">
+          <h4>UCLA</h4>
+          <p>General Surgery Residency</p>
+        </div>
+        <div class="training-item">
+          <h4>USC</h4>
+          <p>Plastic Surgery Residency (#1 ranked program in US)</p>
+        </div>
+        <div class="training-item">
+          <h4>USC Fellowship</h4>
+          <p>Additional plastic surgery fellowship</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Accolades & Recognition</h2>
+      <ul>
+        <li><strong>WRAL "Best Plastic Surgeon in Raleigh"</strong> — every year since 2017</li>
+        <li>Former <strong>Beverly Hills</strong> practice before returning to hometown</li>
+        <li>Featured on cover of <strong>Plastic Surgery News</strong> (twice since 2004)</li>
+        <li><strong>Only facility in NC</strong> with dual Joint Commission + AAAASF accreditation</li>
+        <li>Member: ASPS, International Society of Plastic Surgeons, Alpha Omega Alpha</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Services</h2>
+      <ul>
+        <li><strong>Face:</strong> Fat grafting, browlift, blepharoplasty (upper/lower), midface lift, deep plane facelift, necklift, otoplasty</li>
+        <li><strong>Breast:</strong> Augmentation, lift, reduction, explant, auto-augmentation mastopexy</li>
+        <li><strong>Body:</strong> Tummy tuck, reverse abdominoplasty, back lift, lipo, mommy makeover, arm lift</li>
+        <li><strong>Specialty:</strong> <strong>Gynecomastia</strong> (major niche — dedicated section, videos, crater deformity revision)</li>
+        <li><strong>Med Spa:</strong> Botox, Xeomin, fillers, laser services, EmSculpt, Emsella, PRF</li>
+      </ul>
+    </div>
+
+    <div class="section red-flag">
+      <h2>🔧 Website Issues</h2>
+      <ul>
+        <li><strong>Dated design</strong> — uses .html pages, looks early 2010s</li>
+        <li><strong>Not mobile-optimized</strong> — likely losing mobile traffic</li>
+        <li><strong>Premium positioning vs budget website</strong> — mismatch hurts credibility</li>
+      </ul>
+    </div>
+
+    <div class="section opportunity">
+      <h2>💡 Pitch Opportunities</h2>
+      <ul>
+        <li><strong>Website modernization</strong> — premium practice deserves premium site</li>
+        <li><strong>AI chatbot</strong> — "discerning clientele" could benefit from elevated intake experience</li>
+        <li><strong>Gynecomastia SEO</strong> — they own this niche locally, could dominate nationally</li>
+        <li><strong>Content refresh</strong> — leverage 10-year training story more effectively</li>
+        <li><strong>Privacy-focused features</strong> — appeals to high-profile clients</li>
+      </ul>
+      <p style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
+        <strong>Angle:</strong> "Your Beverly Hills pedigree and 10-year training story deserve a website that matches. Let's bring your digital presence up to the level of your practice."
+      </p>
+    </div>
+
+    <div class="cta-buttons">
+      <a href="https://www.michaellawmd.com/" target="_blank" class="btn btn-secondary">Visit Website →</a>
+      <a href="tel:9192560900" class="btn btn-primary">Call Practice</a>
+    </div>
+  </div>
+</body>
+</html>
