@@ -11,215 +11,211 @@
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
       color: #fff;
       min-height: 100vh;
-      padding: 2rem;
+      overflow-x: auto;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
+    
+    /* Header */
+    .header {
+      padding: 1.5rem 2rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
-    h1 {
-      font-size: 2.5rem;
+    .header h1 {
+      font-size: 1.75rem;
       background: linear-gradient(135deg, #00d4ff, #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
     }
-    .subtitle { color: #888; font-size: 1.1rem; }
-
-    /* Stats Bar */
-    .stats-bar {
+    .header-stats {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      gap: 1.5rem;
     }
-    .stat-box {
+    .stat {
       text-align: center;
-      padding: 1rem 2rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
     }
-    .stat-box .value {
-      font-size: 2rem;
+    .stat-value {
+      font-size: 1.5rem;
       font-weight: bold;
       color: #00d4ff;
     }
-    .stat-box .label { color: #888; font-size: 0.85rem; }
-    .stat-box.needs-action .value { color: #f97316; }
-    .stat-box.sent .value { color: #22c55e; }
-
-    /* Leads Grid */
-    .leads-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
+    .stat-label {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
     }
 
-    /* Lead Card - Action Focused */
+    /* Kanban Board */
+    .kanban {
+      display: flex;
+      gap: 1rem;
+      padding: 1.5rem;
+      min-height: calc(100vh - 100px);
+      overflow-x: auto;
+    }
+
+    /* Kanban Column */
+    .kanban-column {
+      min-width: 300px;
+      max-width: 320px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .column-header {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .column-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .column-count {
+      background: rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      color: #888;
+    }
+    .column-cards {
+      padding: 0.75rem;
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Column Colors */
+    .column-ready .column-header { border-left: 3px solid #f97316; }
+    .column-sent .column-header { border-left: 3px solid #7c3aed; }
+    .column-clicked .column-header { border-left: 3px solid #00d4ff; }
+    .column-responded .column-header { border-left: 3px solid #22c55e; }
+    .column-closed .column-header { border-left: 3px solid #10b981; }
+
+    /* Lead Card */
     .lead-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      position: relative;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
     }
     .lead-card:hover {
-      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
     }
-
-    /* Card Header */
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
     .lead-name {
-      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+      line-height: 1.3;
     }
     .lead-location {
+      font-size: 0.8rem;
       color: #888;
-      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+    .card-badge {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .badge-email { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+    .badge-call { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+
+    /* Card Contact */
+    .card-contact {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card-contact a {
+      color: #00d4ff;
+      text-decoration: none;
+    }
+    .card-contact a:hover {
+      text-decoration: underline;
     }
 
-    /* Status Badges */
-    .status-badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
+    /* Card Actions */
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-small {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 6px;
       font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
     }
-    .status-badge.has-email {
-      background: rgba(34, 197, 94, 0.2);
-      color: #22c55e;
-      border: 1px solid rgba(34, 197, 94, 0.3);
-    }
-    .status-badge.needs-email {
-      background: rgba(249, 115, 22, 0.2);
-      color: #f97316;
-      border: 1px solid rgba(249, 115, 22, 0.3);
-    }
-    .status-badge.sent {
+    .btn-preview {
       background: rgba(124, 58, 237, 0.2);
       color: #a78bfa;
       border: 1px solid rgba(124, 58, 237, 0.3);
     }
-    .status-badge.clicked {
-      background: rgba(0, 212, 255, 0.2);
-      color: #00d4ff;
-      border: 1px solid rgba(0, 212, 255, 0.3);
+    .btn-preview:hover {
+      background: rgba(124, 58, 237, 0.3);
     }
-
-    /* Email Display */
-    .email-display {
-      background: rgba(0,0,0,0.3);
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      font-family: monospace;
-      font-size: 0.85rem;
-      color: #00d4ff;
-      word-break: break-all;
+    .btn-site {
+      background: rgba(255,255,255,0.05);
+      color: #888;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    .email-display.missing {
-      color: #f97316;
-      font-family: inherit;
-      font-style: italic;
-    }
-
-    /* Action Buttons */
-    .action-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .btn {
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: none;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #7c3aed, #00d4ff);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-    }
-    .btn-primary:disabled, .btn-primary.disabled {
-      background: #333;
-      color: #666;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-    .btn-secondary {
+    .btn-site:hover {
       background: rgba(255,255,255,0.1);
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
     }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.15);
+    .btn-send {
+      background: linear-gradient(135deg, #7c3aed, #00d4ff);
+      color: #fff;
+      border: none;
     }
-    .btn-row {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .btn-row .btn {
-      flex: 1;
+    .btn-send:hover {
+      transform: scale(1.02);
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.4);
     }
 
-    /* Tracking Info */
-    .tracking-info {
-      font-size: 0.8rem;
-      color: #666;
+    /* Card Meta */
+    .card-meta {
+      margin-top: 0.75rem;
       padding-top: 0.75rem;
       border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .tracking-info .row {
+      font-size: 0.7rem;
+      color: #666;
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.25rem;
-    }
-    .tracking-info .label { color: #888; }
-    .tracking-info .value { color: #fff; }
-    .tracking-info .value.positive { color: #22c55e; }
-    .tracking-info .value.negative { color: #666; }
-
-    /* Action Items */
-    .action-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      background: rgba(249, 115, 22, 0.1);
-      border: 1px solid rgba(249, 115, 22, 0.2);
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: #f97316;
-    }
-    .action-item.complete {
-      background: rgba(34, 197, 94, 0.1);
-      border-color: rgba(34, 197, 94, 0.2);
-      color: #22c55e;
     }
 
     /* Modal */
@@ -230,7 +226,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -241,20 +237,20 @@
       background: #1a1a2e;
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
-      max-width: 600px;
+      max-width: 550px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
     }
     .modal-header {
-      padding: 1.5rem;
+      padding: 1.25rem;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .modal-header h2 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       background: linear-gradient(135deg, #00d4ff, #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -267,15 +263,15 @@
       cursor: pointer;
     }
     .modal-close:hover { color: #fff; }
-    .modal-body { padding: 1.5rem; }
+    .modal-body { padding: 1.25rem; }
     .email-field {
       margin-bottom: 1rem;
     }
     .email-field label {
       display: block;
       color: #888;
-      font-size: 0.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
       text-transform: uppercase;
     }
     .email-field input, .email-field textarea {
@@ -283,13 +279,13 @@
       background: rgba(0,0,0,0.3);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
-      padding: 0.75rem 1rem;
+      padding: 0.75rem;
       color: #fff;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
     .email-field textarea {
-      min-height: 200px;
+      min-height: 180px;
       resize: vertical;
     }
     .email-field input:focus, .email-field textarea:focus {
@@ -297,321 +293,330 @@
       border-color: #7c3aed;
     }
     .modal-footer {
-      padding: 1.5rem;
+      padding: 1.25rem;
       border-top: 1px solid rgba(255,255,255,0.1);
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: flex-end;
+    }
+    .btn-modal {
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-cancel {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .btn-modal-send {
+      background: linear-gradient(135deg, #7c3aed, #00d4ff);
+      color: #fff;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #666;
+      font-size: 0.85rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Lead Pipeline</h1>
-      <p class="subtitle">Plastic Surgery Outreach — Action Dashboard</p>
-    </header>
+  <div class="header">
+    <h1>🎯 Lead Pipeline</h1>
+    <div class="header-stats">
+      <div class="stat">
+        <div class="stat-value" id="totalLeads">12</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="sentCount" style="color: #7c3aed;">6</div>
+        <div class="stat-label">Sent</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="clickedCount" style="color: #00d4ff;">0</div>
+        <div class="stat-label">Clicked</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="respondedCount" style="color: #22c55e;">0</div>
+        <div class="stat-label">Responded</div>
+      </div>
+    </div>
+  </div>
 
-    <div class="stats-bar">
-      <div class="stat-box">
-        <div class="value" id="totalLeads">12</div>
-        <div class="label">Total Leads</div>
+  <div class="kanban">
+    <!-- Column: Ready to Send -->
+    <div class="kanban-column column-ready">
+      <div class="column-header">
+        <span class="column-title">📋 Ready to Send</span>
+        <span class="column-count" id="readyCount">3</span>
       </div>
-      <div class="stat-box needs-action">
-        <div class="value" id="needsEmail">3</div>
-        <div class="label">Need Email</div>
-      </div>
-      <div class="stat-box sent">
-        <div class="value" id="emailsSent">0</div>
-        <div class="label">Emails Sent</div>
-      </div>
-      <div class="stat-box">
-        <div class="value" id="clicked">0</div>
-        <div class="label">Clicked</div>
+      <div class="column-cards" id="readyCards">
+        
+        <!-- Guerra -->
+        <div class="lead-card" data-lead="guerra">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Guerra Plastic Surgery</div>
+              <div class="lead-location">📍 Phoenix, AZ</div>
+            </div>
+            <span class="card-badge badge-email">Email</span>
+          </div>
+          <div class="card-contact">✉️ <a href="mailto:experts@azbreasts.com">experts@azbreasts.com</a></div>
+          <div class="card-actions">
+            <button class="btn-small btn-send" onclick="sendEmail('guerra', 'experts@azbreasts.com')">📧 Send</button>
+            <a href="https://guerra-plastic-surgery-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+          </div>
+        </div>
+
+        <!-- Jeneby -->
+        <div class="lead-card" data-lead="jeneby">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Dr. Jeneby Plastic Surgery</div>
+              <div class="lead-location">📍 San Antonio, TX</div>
+            </div>
+            <span class="card-badge badge-email">Email</span>
+          </div>
+          <div class="card-contact">✉️ <a href="mailto:info@drjenebyplasticsurgery.com">info@drjenebyplasticsurgery.com</a></div>
+          <div class="card-actions">
+            <button class="btn-small btn-send" onclick="sendEmail('jeneby', 'info@drjenebyplasticsurgery.com')">📧 Send</button>
+            <a href="https://jeneby-plastic-surgery-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+          </div>
+        </div>
+
+        <!-- Michael Law -->
+        <div class="lead-card" data-lead="law">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Michael Law MD</div>
+              <div class="lead-location">📍 Raleigh, NC</div>
+            </div>
+            <span class="card-badge badge-email">Email</span>
+          </div>
+          <div class="card-contact">✉️ <a href="mailto:info@michaellawmd.com">info@michaellawmd.com</a></div>
+          <div class="card-actions">
+            <button class="btn-small btn-send" onclick="sendEmail('law', 'info@michaellawmd.com')">📧 Send</button>
+            <a href="https://michael-law-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="leads-grid" id="leadsGrid">
-
-      <!-- Lead 1: Valley Plastic Surgery -->
-      <div class="lead-card" data-lead="valley" data-has-email="false">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Valley Plastic Surgery & Medspa</div>
-            <div class="lead-location">📍 Baltimore, MD</div>
-          </div>
-          <span class="status-badge needs-email">Need Email</span>
-        </div>
-        <div class="email-display missing">⚠️ No email found — contact form only</div>
-        <div class="action-item">📞 Action: Cold call (410) 628-8200</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://valley-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.thevalleyplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+    <!-- Column: Need Contact -->
+    <div class="kanban-column column-ready">
+      <div class="column-header">
+        <span class="column-title">📞 Need Contact</span>
+        <span class="column-count" id="needContactCount">3</span>
       </div>
+      <div class="column-cards" id="needContactCards">
+        
+        <!-- Valley -->
+        <div class="lead-card" data-lead="valley">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Valley Plastic Surgery</div>
+              <div class="lead-location">📍 Baltimore, MD</div>
+            </div>
+            <span class="card-badge badge-call">Call</span>
+          </div>
+          <div class="card-contact">📞 <a href="tel:4106288200">(410) 628-8200</a></div>
+          <div class="card-actions">
+            <a href="https://valley-plastic-surgery-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://www.thevalleyplasticsurgery.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+        </div>
 
-      <!-- Lead 2: Guerra Plastic Surgery -->
-      <div class="lead-card" data-lead="guerra" data-has-email="true">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Guerra Plastic Surgery Center</div>
-            <div class="lead-location">📍 Phoenix, AZ</div>
+        <!-- Tampa -->
+        <div class="lead-card" data-lead="tampa">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Tampa Mommy Makeover</div>
+              <div class="lead-location">📍 Tampa, FL</div>
+            </div>
+            <span class="card-badge badge-call">Call</span>
           </div>
-          <span class="status-badge has-email">Has Email</span>
-        </div>
-        <div class="email-display">experts@azbreasts.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary" onclick="sendEmail('guerra', 'experts@azbreasts.com')">📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://guerra-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.azbreasts.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          <div class="card-contact">📞 <a href="tel:8132582425">(813) 258-2425</a></div>
+          <div class="card-actions">
+            <a href="https://tampa-mommy-makeover-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://tampamommymakeover.com/" target="_blank" class="btn-small btn-site">Site</a>
           </div>
         </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+
+        <!-- Bluewater -->
+        <div class="lead-card" data-lead="bluewater">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Bluewater Plastic Surgery</div>
+              <div class="lead-location">📍 Raleigh, NC</div>
+            </div>
+            <span class="card-badge badge-call">Call</span>
+          </div>
+          <div class="card-contact">📞 <a href="tel:9198701052">(919) 870-1052</a></div>
+          <div class="card-actions">
+            <a href="https://bluewater-preview.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://www.bluewaterplasticsurgerypartners.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
         </div>
+
       </div>
+    </div>
 
-      <!-- Lead 3: Dr. Jeneby -->
-      <div class="lead-card" data-lead="jeneby" data-has-email="true">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Dr. Jeneby Plastic Surgery</div>
-            <div class="lead-location">📍 San Antonio, TX</div>
-          </div>
-          <span class="status-badge has-email">Has Email</span>
-        </div>
-        <div class="email-display">info@drjenebyplasticsurgery.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary" onclick="sendEmail('jeneby', 'info@drjenebyplasticsurgery.com')">📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://jeneby-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://drjenebyplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+    <!-- Column: Sent -->
+    <div class="kanban-column column-sent">
+      <div class="column-header">
+        <span class="column-title">📤 Sent</span>
+        <span class="column-count" id="sentCardsCount">6</span>
       </div>
+      <div class="column-cards" id="sentCards">
+        
+        <!-- Tony Pham -->
+        <div class="lead-card" data-lead="tonypham">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Tony Pham Plastic Surgery</div>
+              <div class="lead-location">📍 San Jose, CA</div>
+            </div>
+          </div>
+          <div class="card-contact">✉️ contact@drtonypham.com</div>
+          <div class="card-actions">
+            <a href="https://brycedmorgan.github.io/dr-tony-pham/" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://drtonypham.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 1/30</span>
+          </div>
+        </div>
 
-      <!-- Lead 4: Tampa Mommy Makeover -->
-      <div class="lead-card" data-lead="tampa" data-has-email="false">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Tampa Mommy Makeover</div>
-            <div class="lead-location">📍 Tampa, FL</div>
+        <!-- Perimeter -->
+        <div class="lead-card" data-lead="perimeter">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Perimeter Plastic Surgery</div>
+              <div class="lead-location">📍 Atlanta, GA</div>
+            </div>
           </div>
-          <span class="status-badge needs-email">Need Email</span>
-        </div>
-        <div class="email-display missing">⚠️ No email found — contact form only</div>
-        <div class="action-item">📞 Action: Cold call (813) 258-2425</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://tampa-mommy-makeover-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://tampamommymakeover.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          <div class="card-contact">✉️ info@perimeterplasticsurgery.com</div>
+          <div class="card-actions">
+            <a href="https://brycedmorgan.github.io/perimeter-plastic-surgery/" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://perimeterplasticsurgery.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 1/27</span>
           </div>
         </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+
+        <!-- Poggi -->
+        <div class="lead-card" data-lead="poggi">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Poggi Plastic Surgery</div>
+              <div class="lead-location">📍 Wichita, KS</div>
+            </div>
+          </div>
+          <div class="card-contact">📞 (316) 269-3223</div>
+          <div class="card-actions">
+            <a href="https://poggi-plastic-surgery-new-kappa.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://poggiplasticsurgery.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 2/4</span>
+          </div>
         </div>
+
+        <!-- Wigod -->
+        <div class="lead-card" data-lead="wigod">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Wigod Plastic Surgery</div>
+              <div class="lead-location">📍 Meridian, ID</div>
+            </div>
+          </div>
+          <div class="card-contact">📞 (208) 377-9515</div>
+          <div class="card-actions">
+            <a href="https://wigod-plastic-surgery.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://www.wigod.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 2/4</span>
+          </div>
+        </div>
+
+        <!-- Duffy -->
+        <div class="lead-card" data-lead="duffy">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Jacksonville Plastic Surgery</div>
+              <div class="lead-location">📍 Jacksonville, FL</div>
+            </div>
+          </div>
+          <div class="card-contact">✉️ michaelduffymd@gmail.com</div>
+          <div class="card-actions">
+            <a href="https://jacksonville-plastic-surgery-duffy.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://jacksonvilleplasticsurgerybyduffy.com/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 2/4</span>
+          </div>
+        </div>
+
+        <!-- Memphis -->
+        <div class="lead-card" data-lead="memphis">
+          <div class="card-header">
+            <div>
+              <div class="lead-name">Cosmetic Surgery Specialists</div>
+              <div class="lead-location">📍 Memphis, TN</div>
+            </div>
+          </div>
+          <div class="card-contact">Dr. Aldea & Dr. Eby</div>
+          <div class="card-actions">
+            <a href="https://cosmetic-surgery-specialists-memphis.vercel.app" target="_blank" class="btn-small btn-preview">Preview</a>
+            <a href="https://www.cosmeticsurgeryspecialists.org/" target="_blank" class="btn-small btn-site">Site</a>
+          </div>
+          <div class="card-meta">
+            <span>Sent: 2/4</span>
+          </div>
+        </div>
+
       </div>
+    </div>
 
-      <!-- Lead 5: Michael Law MD -->
-      <div class="lead-card" data-lead="law" data-has-email="true">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Michael Law MD Aesthetic Plastic Surgery</div>
-            <div class="lead-location">📍 Raleigh, NC</div>
-          </div>
-          <span class="status-badge has-email">Has Email</span>
-        </div>
-        <div class="email-display">info@michaellawmd.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary" onclick="sendEmail('law', 'info@michaellawmd.com')">📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://law-plastic-surgery-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.michaellawmd.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+    <!-- Column: Clicked -->
+    <div class="kanban-column column-clicked">
+      <div class="column-header">
+        <span class="column-title">👀 Clicked</span>
+        <span class="column-count">0</span>
       </div>
-
-      <!-- Lead 6: Dr. Tony Pham -->
-      <div class="lead-card" data-lead="tonypham" data-has-email="true" data-pre-sent="1/30/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Tony Pham Plastic Surgery</div>
-            <div class="lead-location">📍 San Jose, CA</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">contact@drtonypham.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://brycedmorgan.github.io/dr-tony-pham/" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://drtonypham.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">1/30/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+      <div class="column-cards" id="clickedCards">
+        <div class="empty-state">No clicks yet</div>
       </div>
+    </div>
 
-      <!-- Lead 7: Perimeter Plastic Surgery -->
-      <div class="lead-card" data-lead="perimeter" data-has-email="true" data-pre-sent="1/27/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Perimeter Plastic Surgery</div>
-            <div class="lead-location">📍 Atlanta, GA</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">info@perimeterplasticsurgery.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://brycedmorgan.github.io/perimeter-plastic-surgery/" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://perimeterplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">1/27/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+    <!-- Column: Responded -->
+    <div class="kanban-column column-responded">
+      <div class="column-header">
+        <span class="column-title">💬 Responded</span>
+        <span class="column-count">0</span>
       </div>
-
-      <!-- Lead 8: Poggi Plastic Surgery -->
-      <div class="lead-card" data-lead="poggi" data-has-email="true" data-pre-sent="2/4/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Poggi Plastic Surgery</div>
-            <div class="lead-location">📍 Wichita, KS</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">Contacted via form/direct</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://poggi-plastic-surgery-new-kappa.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://poggiplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+      <div class="column-cards" id="respondedCards">
+        <div class="empty-state">No responses yet</div>
       </div>
+    </div>
 
-      <!-- Lead 9: Bluewater Plastic Surgery Partners -->
-      <div class="lead-card" data-lead="bluewater" data-has-email="false">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Bluewater Plastic Surgery Partners</div>
-            <div class="lead-location">📍 Raleigh, NC</div>
-          </div>
-          <span class="status-badge needs-email">Need Email</span>
-        </div>
-        <div class="email-display missing">⚠️ No email found — contact form only</div>
-        <div class="action-item">📞 Action: Cold call (919) 870-1052</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>📧 Send First Email</button>
-          <div class="btn-row">
-            <a href="https://bluewater-preview.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.bluewaterplasticsurgerypartners.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value negative">—</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+    <!-- Column: Closed -->
+    <div class="kanban-column column-closed">
+      <div class="column-header">
+        <span class="column-title">🎉 Closed</span>
+        <span class="column-count">0</span>
       </div>
-
-      <!-- Lead 10: Wigod Plastic Surgery -->
-      <div class="lead-card" data-lead="wigod" data-has-email="true" data-pre-sent="2/4/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Wigod Plastic Surgery</div>
-            <div class="lead-location">📍 Meridian, ID</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">Contacted via form/direct</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://wigod-plastic-surgery.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.wigod.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
+      <div class="column-cards" id="closedCards">
+        <div class="empty-state">No deals yet</div>
       </div>
-
-      <!-- Lead 11: Jacksonville Plastic Surgery by Duffy -->
-      <div class="lead-card" data-lead="duffy" data-has-email="true" data-pre-sent="2/4/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Jacksonville Plastic Surgery by Duffy</div>
-            <div class="lead-location">📍 Jacksonville, FL</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">michaelduffymd@gmail.com</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://jacksonville-plastic-surgery-duffy.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://jacksonvilleplasticsurgerybyduffy.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
-      </div>
-
-      <!-- Lead 12: Cosmetic Surgery Specialists Memphis -->
-      <div class="lead-card" data-lead="memphis" data-has-email="true" data-pre-sent="2/4/2026">
-        <div class="card-header">
-          <div>
-            <div class="lead-name">Cosmetic Surgery Specialists</div>
-            <div class="lead-location">📍 Memphis, TN</div>
-          </div>
-          <span class="status-badge sent">Sent</span>
-        </div>
-        <div class="email-display">Dr. Peter Aldea & Dr. Patricia Eby</div>
-        <div class="action-buttons">
-          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
-          <div class="btn-row">
-            <a href="https://cosmetic-surgery-specialists-memphis.vercel.app" target="_blank" class="btn btn-secondary">🎨 Preview</a>
-            <a href="https://www.cosmeticsurgeryspecialists.org/" target="_blank" class="btn btn-secondary">🔗 Site</a>
-          </div>
-        </div>
-        <div class="tracking-info">
-          <div class="row"><span class="label">First Sent:</span> <span class="value">2/4/2026</span></div>
-          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -619,7 +624,7 @@
   <div class="modal-overlay" id="emailModal">
     <div class="modal">
       <div class="modal-header">
-        <h2>📧 Preview Email</h2>
+        <h2>📧 Send Email</h2>
         <button class="modal-close" onclick="closeModal()">&times;</button>
       </div>
       <div class="modal-body">
@@ -629,66 +634,22 @@
         </div>
         <div class="email-field">
           <label>Subject</label>
-          <input type="text" id="emailSubject" value="👀 Website makeover preview for your practice">
+          <input type="text" id="emailSubject" value="👀 Quick website preview for your practice">
         </div>
         <div class="email-field">
           <label>Body</label>
-          <textarea id="emailBody">Hi,
-
-I noticed your practice could benefit from a modern website refresh. I've actually built a preview of what your new site could look like:
-
-[PREVIEW LINK WILL BE INSERTED]
-
-Would love to show you more. Free audit included.
-
-Best,
-Josh
-Augment & Advertise
-(801) 787-5294</textarea>
+          <textarea id="emailBody"></textarea>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" id="sendEmailBtn">📧 Send Email</button>
+        <button class="btn-modal btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-modal btn-modal-send" id="sendEmailBtn">📧 Open Mail</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Load state from localStorage
-    const STORAGE_KEY = 'augment_leads_state';
-    let leadState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-
-    // Initialize UI from saved state
-    function initUI() {
-      // Handle pre-sent cards (from HTML data attributes)
-      document.querySelectorAll('[data-pre-sent]').forEach(card => {
-        const leadId = card.dataset.lead;
-        const sentDate = card.dataset.preSent;
-        if (!leadState[leadId]) {
-          leadState[leadId] = { sent: true, sentDate: sentDate };
-        }
-      });
-
-      // Apply saved state
-      Object.keys(leadState).forEach(leadId => {
-        const state = leadState[leadId];
-        const card = document.querySelector(`[data-lead="${leadId}"]`);
-        if (!card) return;
-
-        if (state.sent) {
-          markAsSent(card, state.sentDate);
-        }
-        if (state.clicked) {
-          markAsClicked(card);
-        }
-      });
-      
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(leadState));
-      updateStats();
-    }
-
-    // Preview links for each lead (using tracked URLs)
+    // Preview links with tracking
     const previewLinks = {
       valley: 'https://augmentadvertise.com/go/valley',
       guerra: 'https://augmentadvertise.com/go/guerra',
@@ -704,35 +665,33 @@ Augment & Advertise
       memphis: 'https://augmentadvertise.com/go/memphis'
     };
 
-    // SEMrush competitive insights per lead
+    // SEO insights per lead
     const seoInsights = {
-      valley: "You're #2 for 'mommy makeover Baltimore' — baltimoreplasticsurgery.com holds #1",
-      guerra: "Not ranking for 'mommy makeover Phoenix' — drcraft.com holds #1",
+      valley: "You're #2 for 'mommy makeover Baltimore' — this design helps you take #1",
+      guerra: "Not ranking for 'mommy makeover Phoenix' — this design fixes that",
       jeneby: "Strong SEO with 22K organic traffic — this design makes it even better",
-      tampa: "Not in top 5 for 'mommy makeover Tampa' — newtampaplasticsurgery.com owns #1",
-      law: "Not ranking for 'mommy makeover Raleigh' — wakeplasticsurgery.com holds #1",
+      tampa: "Not in top 5 for 'mommy makeover Tampa' — this design changes that",
+      law: "Not ranking for 'mommy makeover Raleigh' — this premium design competes",
       tonypham: "Competitive Bay Area market — this design helps you stand out",
-      perimeter: "Atlanta market has strong competition — this design positions you as premium",
-      poggi: "Your site's been hacked with casino spam — this clean design restores your credibility",
-      bluewater: "Raleigh is competitive — this design positions you as premium against local rivals",
-      wigod: "Boise/Meridian market has room to grow — modern design helps capture more local searches",
-      duffy: "Jacksonville is competitive — this design helps you stand out in a crowded market",
-      memphis: "Ivy League trained + Top Doctors — this design matches your premium credentials"
+      perimeter: "Atlanta market has strong competition — this positions you as premium",
+      poggi: "Your site's been hacked with spam — this clean design restores credibility",
+      bluewater: "Raleigh is competitive — this design positions you against local rivals",
+      wigod: "Boise/Meridian market has room to grow — capture more local searches",
+      duffy: "Jacksonville is competitive — this helps you stand out",
+      memphis: "Ivy League trained + Top Doctors — this design matches your credentials"
     };
 
     let currentLeadId = null;
     let currentEmail = null;
 
-    // Open preview modal
     function sendEmail(leadId, email) {
       currentLeadId = leadId;
       currentEmail = email;
       
       const previewLink = previewLinks[leadId] || '[PREVIEW LINK]';
-      
-      document.getElementById('emailTo').value = email;
       const seoInsight = seoInsights[leadId] || "Built to help you show up higher in search";
       
+      document.getElementById('emailTo').value = email;
       document.getElementById('emailBody').value = `Here's a sneak peek at what your website makeover could look like! →
 
 ${previewLink}
@@ -754,7 +713,6 @@ Augment & Advertise
       currentEmail = null;
     }
 
-    // Actually send the email
     document.getElementById('sendEmailBtn').addEventListener('click', function() {
       if (!currentLeadId || !currentEmail) return;
       
@@ -762,81 +720,16 @@ Augment & Advertise
       const body = encodeURIComponent(document.getElementById('emailBody').value);
       
       window.open(`mailto:${currentEmail}?subject=${subject}&body=${body}`, '_blank');
-
-      // Update state
-      const card = document.querySelector(`[data-lead="${currentLeadId}"]`);
-      const now = new Date().toLocaleDateString();
-      leadState[currentLeadId] = leadState[currentLeadId] || {};
-      leadState[currentLeadId].sent = true;
-      leadState[currentLeadId].sentDate = now;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(leadState));
-
-      markAsSent(card, now);
-      updateStats();
       closeModal();
     });
 
-    // Close modal on overlay click
     document.getElementById('emailModal').addEventListener('click', function(e) {
       if (e.target === this) closeModal();
     });
 
-    // Close modal on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
-
-    function markAsSent(card, date) {
-      const btn = card.querySelector('.btn-primary');
-      btn.textContent = '✅ Email Sent';
-      btn.classList.add('disabled');
-      btn.disabled = true;
-      btn.onclick = null;
-
-      const badge = card.querySelector('.status-badge');
-      badge.className = 'status-badge sent';
-      badge.textContent = 'Sent';
-
-      const sentRow = card.querySelector('.tracking-info .row:first-child .value');
-      sentRow.textContent = date;
-      sentRow.classList.remove('negative');
-    }
-
-    function markAsClicked(card) {
-      const badge = card.querySelector('.status-badge');
-      badge.className = 'status-badge clicked';
-      badge.textContent = 'Clicked!';
-
-      const clickedRow = card.querySelector('.tracking-info .row:last-child .value');
-      clickedRow.textContent = 'Yes';
-      clickedRow.classList.remove('negative');
-      clickedRow.classList.add('positive');
-    }
-
-    function updateStats() {
-      const cards = document.querySelectorAll('.lead-card');
-      let total = cards.length;
-      let needsEmail = 0;
-      let sent = 0;
-      let clicked = 0;
-
-      cards.forEach(card => {
-        const leadId = card.dataset.lead;
-        const hasEmail = card.dataset.hasEmail === 'true';
-        
-        if (!hasEmail) needsEmail++;
-        if (leadState[leadId]?.sent) sent++;
-        if (leadState[leadId]?.clicked) clicked++;
-      });
-
-      document.getElementById('totalLeads').textContent = total;
-      document.getElementById('needsEmail').textContent = needsEmail;
-      document.getElementById('emailsSent').textContent = sent;
-      document.getElementById('clicked').textContent = clicked;
-    }
-
-    // Init on load
-    initUI();
   </script>
 </body>
 </html>
