@@ -221,6 +221,88 @@
       border-color: rgba(34, 197, 94, 0.2);
       color: #22c55e;
     }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #1a1a2e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 {
+      font-size: 1.25rem;
+      background: linear-gradient(135deg, #00d4ff, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-body { padding: 1.5rem; }
+    .email-field {
+      margin-bottom: 1rem;
+    }
+    .email-field label {
+      display: block;
+      color: #888;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .email-field input, .email-field textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .email-field textarea {
+      min-height: 200px;
+      resize: vertical;
+    }
+    .email-field input:focus, .email-field textarea:focus {
+      outline: none;
+      border-color: #7c3aed;
+    }
+    .modal-footer {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
   </style>
 </head>
 <body>
@@ -371,6 +453,45 @@
     </div>
   </div>
 
+  <!-- Email Preview Modal -->
+  <div class="modal-overlay" id="emailModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>📧 Preview Email</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="email-field">
+          <label>To</label>
+          <input type="text" id="emailTo" readonly>
+        </div>
+        <div class="email-field">
+          <label>Subject</label>
+          <input type="text" id="emailSubject" value="Transform Your Online Presence — Free Preview Inside">
+        </div>
+        <div class="email-field">
+          <label>Body</label>
+          <textarea id="emailBody">Hi,
+
+I noticed your practice could benefit from a modern website refresh. I've actually built a preview of what your new site could look like:
+
+[PREVIEW LINK WILL BE INSERTED]
+
+Would love to show you more. Free audit included.
+
+Best,
+Josh
+Augment & Advertise
+(801) 787-5294</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" id="sendEmailBtn">📧 Send Email</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Load state from localStorage
     const STORAGE_KEY = 'augment_leads_state';
@@ -393,38 +514,79 @@
       updateStats();
     }
 
-    // Send email action
+    // Preview links for each lead
+    const previewLinks = {
+      valley: 'https://valley-plastic-surgery-preview.vercel.app',
+      guerra: 'https://guerra-plastic-surgery-preview.vercel.app',
+      jeneby: 'https://jeneby-plastic-surgery-preview.vercel.app',
+      tampa: 'https://tampa-mommy-makeover-preview.vercel.app',
+      law: 'https://law-plastic-surgery-preview.vercel.app'
+    };
+
+    let currentLeadId = null;
+    let currentEmail = null;
+
+    // Open preview modal
     function sendEmail(leadId, email) {
-      const card = document.querySelector(`[data-lead="${leadId}"]`);
-      const btn = card.querySelector('.btn-primary');
+      currentLeadId = leadId;
+      currentEmail = email;
       
-      // Open email client
-      const subject = encodeURIComponent('Transform Your Online Presence — Free Preview Inside');
-      const body = encodeURIComponent(`Hi,
+      const previewLink = previewLinks[leadId] || '[PREVIEW LINK]';
+      
+      document.getElementById('emailTo').value = email;
+      document.getElementById('emailBody').value = `Hi,
 
 I noticed your practice could benefit from a modern website refresh. I've actually built a preview of what your new site could look like:
 
-[PREVIEW LINK]
+${previewLink}
 
 Would love to show you more. Free audit included.
 
 Best,
 Josh
 Augment & Advertise
-(801) 787-5294`);
+(801) 787-5294`;
       
-      window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
+      document.getElementById('emailModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('emailModal').classList.remove('active');
+      currentLeadId = null;
+      currentEmail = null;
+    }
+
+    // Actually send the email
+    document.getElementById('sendEmailBtn').addEventListener('click', function() {
+      if (!currentLeadId || !currentEmail) return;
+      
+      const subject = encodeURIComponent(document.getElementById('emailSubject').value);
+      const body = encodeURIComponent(document.getElementById('emailBody').value);
+      
+      window.open(`mailto:${currentEmail}?subject=${subject}&body=${body}`, '_blank');
 
       // Update state
+      const card = document.querySelector(`[data-lead="${currentLeadId}"]`);
       const now = new Date().toLocaleDateString();
-      leadState[leadId] = leadState[leadId] || {};
-      leadState[leadId].sent = true;
-      leadState[leadId].sentDate = now;
+      leadState[currentLeadId] = leadState[currentLeadId] || {};
+      leadState[currentLeadId].sent = true;
+      leadState[currentLeadId].sentDate = now;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(leadState));
 
       markAsSent(card, now);
       updateStats();
-    }
+      closeModal();
+    });
+
+    // Close modal on overlay click
+    document.getElementById('emailModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
 
     function markAsSent(card, date) {
       const btn = card.querySelector('.btn-primary');
