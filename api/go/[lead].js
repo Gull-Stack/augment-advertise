@@ -8,7 +8,8 @@ const redirects = {
   law: 'https://michael-law-preview.vercel.app',
   tonypham: 'https://brycedmorgan.github.io/dr-tony-pham/',
   perimeter: 'https://brycedmorgan.github.io/perimeter-plastic-surgery/',
-  poggi: 'https://poggi-plastic-surgery-new.vercel.app'
+  poggi: 'https://poggi-plastic-surgery-new.vercel.app',
+  bluewater: 'https://bluewater-preview.vercel.app'
 };
 
 export default async function handler(req) {
