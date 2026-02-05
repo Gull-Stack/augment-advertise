@@ -450,6 +450,52 @@
         </div>
       </div>
 
+      <!-- Lead 6: Dr. Tony Pham -->
+      <div class="lead-card" data-lead="tonypham" data-has-email="true" data-pre-sent="1/30/2026">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Tony Pham Plastic Surgery</div>
+            <div class="lead-location">📍 San Jose, CA</div>
+          </div>
+          <span class="status-badge sent">Sent</span>
+        </div>
+        <div class="email-display">contact@drtonypham.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
+          <div class="btn-row">
+            <a href="https://brycedmorgan.github.io/dr-tony-pham/" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://drtonypham.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value">1/30/2026</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
+      <!-- Lead 7: Perimeter Plastic Surgery -->
+      <div class="lead-card" data-lead="perimeter" data-has-email="true" data-pre-sent="1/27/2026">
+        <div class="card-header">
+          <div>
+            <div class="lead-name">Perimeter Plastic Surgery</div>
+            <div class="lead-location">📍 Atlanta, GA</div>
+          </div>
+          <span class="status-badge sent">Sent</span>
+        </div>
+        <div class="email-display">info@perimeterplasticsurgery.com</div>
+        <div class="action-buttons">
+          <button class="btn btn-primary disabled" disabled>✅ Email Sent</button>
+          <div class="btn-row">
+            <a href="https://brycedmorgan.github.io/perimeter-plastic-surgery/" target="_blank" class="btn btn-secondary">🎨 Preview</a>
+            <a href="https://perimeterplasticsurgery.com/" target="_blank" class="btn btn-secondary">🔗 Site</a>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="row"><span class="label">First Sent:</span> <span class="value">1/27/2026</span></div>
+          <div class="row"><span class="label">Clicked:</span> <span class="value negative">No</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -499,6 +545,16 @@ Augment & Advertise
 
     // Initialize UI from saved state
     function initUI() {
+      // Handle pre-sent cards (from HTML data attributes)
+      document.querySelectorAll('[data-pre-sent]').forEach(card => {
+        const leadId = card.dataset.lead;
+        const sentDate = card.dataset.preSent;
+        if (!leadState[leadId]) {
+          leadState[leadId] = { sent: true, sentDate: sentDate };
+        }
+      });
+
+      // Apply saved state
       Object.keys(leadState).forEach(leadId => {
         const state = leadState[leadId];
         const card = document.querySelector(`[data-lead="${leadId}"]`);
@@ -511,6 +567,8 @@ Augment & Advertise
           markAsClicked(card);
         }
       });
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(leadState));
       updateStats();
     }
 
@@ -520,7 +578,9 @@ Augment & Advertise
       guerra: 'https://guerra-plastic-surgery-preview.vercel.app',
       jeneby: 'https://jeneby-plastic-surgery-preview.vercel.app',
       tampa: 'https://tampa-mommy-makeover-preview.vercel.app',
-      law: 'https://law-plastic-surgery-preview.vercel.app'
+      law: 'https://law-plastic-surgery-preview.vercel.app',
+      tonypham: 'https://brycedmorgan.github.io/dr-tony-pham/',
+      perimeter: 'https://brycedmorgan.github.io/perimeter-plastic-surgery/'
     };
 
     let currentLeadId = null;
