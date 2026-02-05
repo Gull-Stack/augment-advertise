@@ -11,7 +11,8 @@ const redirects = {
   poggi: 'https://poggi-plastic-surgery-new-kappa.vercel.app',
   bluewater: 'https://bluewater-preview.vercel.app',
   wigod: 'https://wigod-plastic-surgery.vercel.app',
-  duffy: 'https://jacksonville-plastic-surgery-duffy.vercel.app'
+  duffy: 'https://jacksonville-plastic-surgery-duffy.vercel.app',
+  memphis: 'https://cosmetic-surgery-specialists-memphis.vercel.app'
 };
 
 export default async function handler(req) {
